@@ -1,7 +1,8 @@
 import React from 'react';
+import ShoppingListApp from './components/ShoppingListApp';
 
 function App() {
-  return <ShoppingList />;
+  return <ShoppingListApp />;
 }
 
 export default App;
