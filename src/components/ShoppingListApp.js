@@ -4,8 +4,16 @@ import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
+import ShoppingList from '../components/ShoppingList';
 
 function ShoppingListApp() {
+    const initialItems = [
+        {id: 1, thing: "Wine", inCart: false},
+        {id: 2, thing: "Bread", inCart: false},
+        {id: 3, thing: "Pizza", inCart: false}
+    ];
+    const [items, setItem] = useState(initialItems);
+
     return (
         <Paper 
             style={{
@@ -21,6 +29,8 @@ function ShoppingListApp() {
                     <Typography color='inherit'>Shopping List With Hooks</Typography>
                 </Toolbar>
             </AppBar>
+
+            <ShoppingList items={items} />
         </Paper>
     )
 }
