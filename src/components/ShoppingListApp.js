@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import ShoppingList from '../components/ShoppingList';
+import ItemForm from '../components/ItemForm';
 
 function ShoppingListApp() {
     const initialItems = [
@@ -13,6 +14,10 @@ function ShoppingListApp() {
         {id: 3, thing: "Pizza", inCart: false}
     ];
     const [items, setItem] = useState(initialItems);
+
+    const addItem = newItemText => {
+        setItem([...items, {id: 4, thing: newItemText, completed: false}]);
+    };
 
     return (
         <Paper 
@@ -29,7 +34,7 @@ function ShoppingListApp() {
                     <Typography color='inherit'>Shopping List With Hooks</Typography>
                 </Toolbar>
             </AppBar>
-
+            <ItemForm addItem={addItem}/>
             <ShoppingList items={items} />
         </Paper>
     )
