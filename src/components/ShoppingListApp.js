@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import ShoppingList from '../components/ShoppingList';
 import ItemForm from '../components/ItemForm';
+import uuid from 'uuid';
 
 function ShoppingListApp() {
     const initialItems = [
@@ -16,8 +17,13 @@ function ShoppingListApp() {
     const [items, setItem] = useState(initialItems);
 
     const addItem = newItemText => {
-        setItem([...items, {id: 4, thing: newItemText, inCart: false}]);
+        setItem([...items, {id: uuid(), thing: newItemText, inCart: false}]);
     };
+
+    const removeItem = itemId => {
+        const updatedItems = items.filter(item => item.id !== itemId);
+        setItem(updatedItems);
+    }
 
     return (
         <Paper 
@@ -37,7 +43,7 @@ function ShoppingListApp() {
             <Grid container justify='center' style={{marginTop: '1rem'}}>
                 <Grid item xs={11} md={8} lg={4}>
                     <ItemForm addItem={addItem}/>
-                    <ShoppingList items={items} />
+                    <ShoppingList items={items} removeItem={removeItem}/>
                 </Grid>
             </Grid>
             
