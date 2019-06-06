@@ -7,13 +7,19 @@ import useInputState from '../hooks/useInputState';
 function ItemForm({addItem}) {
     const [value, handleChange, reset] = useInputState('');
     return (
-        <Paper>
+        <Paper style={{ margin: '1rem 0', padding: '0 1rem'}}>
             <form onSubmit={e => {
                 e.preventDefault();
                 addItem(value);
                 reset();
             }}>
-                <TextField value={value} onChange={handleChange}/>
+                <TextField 
+                    value={value} 
+                    onChange={handleChange} 
+                    margin='normal' 
+                    label='Add New Item'
+                    fullWidth
+                />
             </form>
         </Paper>
     )

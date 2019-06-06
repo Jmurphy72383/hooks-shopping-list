@@ -10,13 +10,13 @@ import ItemForm from '../components/ItemForm';
 function ShoppingListApp() {
     const initialItems = [
         {id: 1, thing: "Wine", inCart: false},
-        {id: 2, thing: "Bread", inCart: false},
+        {id: 2, thing: "Bread", inCart: true},
         {id: 3, thing: "Pizza", inCart: false}
     ];
     const [items, setItem] = useState(initialItems);
 
     const addItem = newItemText => {
-        setItem([...items, {id: 4, thing: newItemText, completed: false}]);
+        setItem([...items, {id: 4, thing: newItemText, inCart: false}]);
     };
 
     return (
@@ -34,8 +34,13 @@ function ShoppingListApp() {
                     <Typography color='inherit'>Shopping List With Hooks</Typography>
                 </Toolbar>
             </AppBar>
-            <ItemForm addItem={addItem}/>
-            <ShoppingList items={items} />
+            <Grid container justify='center' style={{marginTop: '1rem'}}>
+                <Grid item xs={11} md={8} lg={4}>
+                    <ItemForm addItem={addItem}/>
+                    <ShoppingList items={items} />
+                </Grid>
+            </Grid>
+            
         </Paper>
     )
 }
