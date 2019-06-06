@@ -8,10 +8,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 
-function Item({thing, inCart, removeItem, id}) {
+function Item({id, thing, inCart, removeItem, toggleInCart}) {
     return (
         <ListItem>
-            <Checkbox tabIndex={-1} checked={inCart} />
+            <Checkbox tabIndex={-1} checked={inCart} onClick={() => toggleInCart(id)} />
             <ListItemText style={{textDecoration: inCart ? 'line-through' : 'none'}}>{thing}</ListItemText>
             <ListItemSecondaryAction>
                 <IconButton aria-label='Edit'>

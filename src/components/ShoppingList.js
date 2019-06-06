@@ -4,7 +4,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import Item from './Item';
 
-function ShoppingList({items, removeItem}) {
+function ShoppingList({items, removeItem, toggleInCart}) {
     return (
         <Paper>
             <List>
@@ -16,6 +16,7 @@ function ShoppingList({items, removeItem}) {
                             key={item.id} 
                             inCart={item.inCart}
                             removeItem={removeItem}
+                            toggleInCart={toggleInCart}
                         />
                         <Divider />
                     </>

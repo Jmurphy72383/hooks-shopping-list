@@ -16,6 +16,8 @@ function ShoppingListApp() {
     ];
     const [items, setItem] = useState(initialItems);
 
+
+
     const addItem = newItemText => {
         setItem([...items, {id: uuid(), thing: newItemText, inCart: false}]);
     };
@@ -23,7 +25,14 @@ function ShoppingListApp() {
     const removeItem = itemId => {
         const updatedItems = items.filter(item => item.id !== itemId);
         setItem(updatedItems);
-    }
+    } 
+
+    const toggleInCart = itemId => {
+        const updatedItems = items.map(item => 
+            item.id === itemId ? { ...item, inCart: !item.inCart} : item
+        );
+        setItem(updatedItems);
+    };
 
     return (
         <Paper 
@@ -43,7 +52,11 @@ function ShoppingListApp() {
             <Grid container justify='center' style={{marginTop: '1rem'}}>
                 <Grid item xs={11} md={8} lg={4}>
                     <ItemForm addItem={addItem}/>
-                    <ShoppingList items={items} removeItem={removeItem}/>
+                    <ShoppingList 
+                        items={items} 
+                        removeItem={removeItem} 
+                        toggleInCart={toggleInCart}
+                    />
                 </Grid>
             </Grid>
             
