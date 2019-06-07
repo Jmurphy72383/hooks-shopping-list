@@ -1,4 +1,5 @@
 import React from 'react';
+import EditItemForm from './EditItemForm';
 import useToggleState from '../hooks/useToggleState';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -9,11 +10,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 
-function Item({id, thing, inCart, removeItem, toggleInCart}) {
+function Item({id, thing, inCart, removeItem, toggleInCart, editItem}) {
     const [isEditing, toggle] = useToggleState(false);
     return (
-        <ListItem>
-            {isEditing ? <h1>Editing</h1> : 
+        <ListItem style={{ height: '64px'}}>
+            {isEditing ? <EditItemForm editItem={editItem} id={id} thing={thing} toggleEditForm={toggle}/> : 
             <>
             <Checkbox tabIndex={-1} checked={inCart} onClick={() => toggleInCart(id)} />
             <ListItemText style={{textDecoration: inCart ? 'line-through' : 'none'}}>{thing}</ListItemText>

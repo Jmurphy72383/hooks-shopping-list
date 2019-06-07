@@ -34,6 +34,13 @@ function ShoppingListApp() {
         setItem(updatedItems);
     };
 
+    const editItem = (itemId, newItem) => {
+        const updatedItems = items.map(item => 
+            item.id === itemId ? { ...item, thing: newItem} : item
+        );
+        setItem(updatedItems);
+    }
+
     return (
         <Paper 
             style={{
@@ -56,6 +63,7 @@ function ShoppingListApp() {
                         items={items} 
                         removeItem={removeItem} 
                         toggleInCart={toggleInCart}
+                        editItem={editItem}
                     />
                 </Grid>
             </Grid>

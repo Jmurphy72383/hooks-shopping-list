@@ -4,11 +4,11 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import Item from './Item';
 
-function ShoppingList({items, removeItem, toggleInCart}) {
+function ShoppingList({items, removeItem, toggleInCart, editItem}) {
     return (
         <Paper>
             <List>
-                {items.map(item => (
+                {items.map((item, i) => (
                     <>
                         <Item 
                             thing={item.thing} 
@@ -17,8 +17,9 @@ function ShoppingList({items, removeItem, toggleInCart}) {
                             inCart={item.inCart}
                             removeItem={removeItem}
                             toggleInCart={toggleInCart}
+                            editItem={editItem}
                         />
-                        <Divider />
+                        {i < items.length - 1 && <Divider />}
                     </>
                 ))} 
             </List>
