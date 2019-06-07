@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
@@ -9,12 +9,17 @@ import ItemForm from '../components/ItemForm';
 import uuid from 'uuid';
 
 function ShoppingListApp() {
-    const initialItems = [
-        {id: 1, thing: "Wine", inCart: false},
-        {id: 2, thing: "Bread", inCart: true},
-        {id: 3, thing: "Pizza", inCart: false}
-    ];
+    const initialItems = JSON.parse(window.localStorage.getItem('items')) || "[]";
+    // const initialItems = [
+    //     {id: 1, thing: "Wine", inCart: false},
+    //     {id: 2, thing: "Bread", inCart: true},
+    //     {id: 3, thing: "Pizza", inCart: false}
+    // ];
     const [items, setItem] = useState(initialItems);
+
+    useEffect(() => {
+        window.localStorage.setItem('items', JSON.stringify(items));
+    }, [items]);
 
 
 
